@@ -1,0 +1,10 @@
+{
+  "uuid": "%uuid%",
+  "name": "LPmitKev",
+  "mainClass": "de.lpmitkev.kinau.LPmitKevAddon",
+  "description": "This addon adds cool new laser beams to the game mode LaserTag. Furthermore it broadcasts your current game and shows your current nickname",
+  "version": 1,
+  "author": "MrKinau",
+  "category": 3,
+  "icon": "https://lpmitkev.de/img/server-800.png"
+}
