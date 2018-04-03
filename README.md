@@ -1,4 +1,8 @@
 # LPmitKev-Addon
+### Changelog:
+* 02.04.2018
+  * **[~] Bugfix:** Laser-Strahlen werden nun auch richtig angezeigt, wenn man in einem Spieler spectatet
+  * **[~] Bugfix:** Das Addon ist nun mit dem "DustMC-Support-Addon" kompatibel
 ### Features:
 * Nickmodule
 
