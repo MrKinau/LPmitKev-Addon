@@ -55,25 +55,6 @@ public class LPmitKevServer extends Server {
             Location start = new Location(x1, y1 - 0.2, z1);
             Location end = new Location(x2, y2, z2);
             new Laser(start, end, new Color(cRed, cGreen, cBlue));
-
-            start = new Location(0, 50, 0);
-            end = new Location(5, 50, 0);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-            end = new Location(-5, 50, 0);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-            end = new Location(0, 50, 5);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-            end = new Location(0, 50, -5);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-
-            end = new Location(5, 50, 5);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-            end = new Location(-5, 50, 5);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-            end = new Location(5, 50, -5);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
-            end = new Location(-5, 50, -5);
-            new Laser(start, end, new Color(cRed, cGreen, cBlue));
         } else if(s.equalsIgnoreCase("ServerState"))
             update();
     }
