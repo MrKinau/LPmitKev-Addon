@@ -2,7 +2,6 @@ package de.lpmitkev.kinau;
 
 import de.lpmitkev.kinau.lasertag.LaserRenderTickListener;
 import de.lpmitkev.kinau.lasertag.LaserUpdateTickListener;
-import de.lpmitkev.kinau.modules.LPMKLaserTagKillsModule;
 import de.lpmitkev.kinau.modules.LPMKNickModule;
 import de.lpmitkev.kinau.server.LPmitKevServer;
 import net.labymod.api.LabyModAddon;
@@ -21,7 +20,6 @@ public class LPmitKevAddon extends LabyModAddon {
 
     private static LPmitKevAddon instance;
     private LPmitKevServer lPmitKevServer;
-    private LPMKLaserTagKillsModule lasertagModule;
 
     private boolean laserActive, displayServerState;
     private int laserTagKillsTTL = 10;
@@ -35,7 +33,6 @@ public class LPmitKevAddon extends LabyModAddon {
         ModuleCategoryRegistry.loadCategory(LPMITKEV_MODULECATEGORY);
         getApi().registerServerSupport(getInstance(), lPmitKevServer);
         getApi().registerModule(new LPMKNickModule(lPmitKevServer));
-        getApi().registerModule(lasertagModule = new LPMKLaserTagKillsModule());
         getApi().registerForgeListener(new LaserRenderTickListener());
         getApi().registerForgeListener(new LaserUpdateTickListener());
     }
@@ -79,13 +76,5 @@ public class LPmitKevAddon extends LabyModAddon {
 
     public boolean isLaserActive() {
         return laserActive;
-    }
-
-    public LPMKLaserTagKillsModule getLasertagModule() {
-        return lasertagModule;
-    }
-
-    public int getLaserTagKillsTTL() {
-        return laserTagKillsTTL;
     }
 }

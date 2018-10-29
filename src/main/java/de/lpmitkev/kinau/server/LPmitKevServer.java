@@ -2,13 +2,11 @@ package de.lpmitkev.kinau.server;
 
 import de.lpmitkev.kinau.LPmitKevAddon;
 import de.lpmitkev.kinau.lasertag.Laser;
-import de.lpmitkev.kinau.modules.LPMKLaserTagKillsModule;
 import de.lpmitkev.kinau.utils.Location;
 import io.netty.buffer.Unpooled;
 import net.labymod.api.events.TabListEvent;
 import net.labymod.chat.packets.PacketPlayServerStatus;
 import net.labymod.core.LabyModCore;
-import net.labymod.ingamegui.moduletypes.ColoredTextModule;
 import net.labymod.main.LabyMod;
 import net.labymod.servermanager.ChatDisplayAction;
 import net.labymod.servermanager.Server;
@@ -18,7 +16,6 @@ import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
 import org.lwjgl.util.Color;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -44,39 +41,6 @@ public class LPmitKevServer extends Server {
             this.nickname = unformatted.replace("[*] Du wurdest als ", "").split(" ")[0];
         else if (unformatted.startsWith("[*] Verbinde zur Hub") || unformatted.startsWith("[!] Dein Nickname wurde aufgel"))
             this.nickname = null;
-        if(LPmitKevAddon.getInstance().getLasertagModule().isShown()) {
-            if (ltLaserKillPattern.matcher(unformatted).matches()) {
-                LPMKLaserTagKillsModule lasertagModule = LPmitKevAddon.getInstance().getLasertagModule();
-                String player1 = formatted.split(" ")[0].replace("§r", "").replace("§", "");
-                String player2 = formatted.split(" ")[2].replace("§r", "").replace("§", "");
-                String distance = formatted.split(" ")[3].replace("§r", "").replace("§o", "").replace("§", "");
-                String separator1 = formatted.split(" ")[1].split("§r")[1].replace("§r", "").replace("§", "");
-                String separator2 = formatted.split(" ")[1].split("§r")[2].replace("§r", "").replace("§", "");
-                String separator3 = formatted.split(" ")[1].split("§r")[3].replace("§r", "").replace("§", "");
-
-                List<ColoredTextModule.Text> texts = new ArrayList<ColoredTextModule.Text>();
-                texts.add(new ColoredTextModule.Text(player1.substring(1) + " ", getModColor(player1.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(separator1.substring(1), getModColor(separator1.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(separator2.substring(1), getModColor(separator2.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(separator3.substring(1) + " ", getModColor(separator3.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(player2.substring(1) + " ", getModColor(player2.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(distance.substring(1) + " ", getModColor(distance.charAt(0)).getColor().getRGB(), false, true, false));
-                lasertagModule.addText(texts);
-                return ChatDisplayAction.HIDE;
-            } else if (ltGrenadeKillPattern.matcher(unformatted).matches() || ltMineKillPattern.matcher(unformatted).matches()) {
-                LPMKLaserTagKillsModule lasertagModule = LPmitKevAddon.getInstance().getLasertagModule();
-                String player1 = formatted.split(" ")[0].replace("§r", "").replace("§", "");
-                String player2 = formatted.split(" ")[2].replace("§r", "").replace("§", "");
-                String separator = formatted.split(" ")[1].replace("§r", "").replace("§", "");
-
-                List<ColoredTextModule.Text> texts = new ArrayList<ColoredTextModule.Text>();
-                texts.add(new ColoredTextModule.Text(player1.substring(1) + " ", getModColor(player1.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(separator.substring(1) + " ", getModColor(separator.charAt(0)).getColor().getRGB()));
-                texts.add(new ColoredTextModule.Text(player2.substring(1), getModColor(player2.charAt(0)).getColor().getRGB()));
-                lasertagModule.addText(texts);
-                return ChatDisplayAction.HIDE;
-            }
-        }
         return ChatDisplayAction.NORMAL;
     }
 
